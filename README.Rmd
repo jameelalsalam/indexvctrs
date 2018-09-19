@@ -1,31 +1,39 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-indexvctrs
-==========
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# indexvctrs
 
 The goal of indexvctrs is to provide a DSL for indexed vector operations
 
 Just experimental -- I don't expect this to be usable any time soon.
 
-Installation
-------------
+## Installation
 
 ``` r
 devtools::install_github("jameelalsalam/indexvctrs")
 ```
 
-Example
--------
+## Example
 
 This is a basic example which shows you how to solve a common problem:
 
-``` r
+```{r example, error=TRUE}
 with_indices({
   Emissions[ghg, fuel] <- fuel_consumption[fuel] * EF[ghg, fuel]
   
   Emissions[ghg] <- sum_over(fuel, Emissions[ghg, fuel])
 })
-#> Error in with_indices({: could not find function "with_indices"
 ```
 
 Example equation 2.1 from [IPCC 2006 inventory GLs](https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_2_Ch2_Stationary_Combustion.pdf)
@@ -34,25 +42,23 @@ Under the hood, these objects are actually data frames with additional attribute
 
 I don't believe that R really does what I want when recycling vectors and arrays or arrays of different dimension.
 
-``` r
+```{r, error=TRUE}
 c(1:2) + array(c(11:16), dim = c(2, 3))
-#>      [,1] [,2] [,3]
-#> [1,]   12   14   16
-#> [2,]   14   16   18
 array(c(1:2), dim = 2) + array(c(11:16), dim = c(2, 3))
-#> Error in array(c(1:2), dim = 2) + array(c(11:16), dim = c(2, 3)): non-conformable arrays
 ```
+
 
 Representation invariant:
 
--   To simulate an nd-array, the data must be unique on the combination of indices.
--   Only a single 'value' column is allowed
+* To simulate an nd-array, the data must be unique on the combination of indices.
+* Only a single 'value' column is allowed
 
-References
-----------
+## References
 
 I hope to take advantage of learning from:
 
--   [DSLs](https://adv-r.hadley.nz/translation.html) in adv-R
--   S3 object creation from [adv-R](https://adv-r.hadley.nz/s3.html), the [vctrs pacakge](https://github.com/r-lib/vctrs), and the [sloop package](https://github.com/hadley/sloop)
--   related to Einstein summation notation, e.g. in [Juilia](https://github.com/ahwillia/Einsum.jl) or [Python/Numpy](https://docs.scipy.org/doc/numpy-1.10.0/reference/generated/numpy.einsum.html)
+* [DSLs](https://adv-r.hadley.nz/translation.html) in adv-R
+* S3 object creation from [adv-R](https://adv-r.hadley.nz/s3.html), the [vctrs pacakge](https://github.com/r-lib/vctrs), and the [sloop package](https://github.com/hadley/sloop)
+* related to Einstein summation notation, e.g. in [Juilia](https://github.com/ahwillia/Einsum.jl) or [Python/Numpy](https://docs.scipy.org/doc/numpy-1.10.0/reference/generated/numpy.einsum.html)
+
+
