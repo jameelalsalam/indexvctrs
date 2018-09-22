@@ -14,8 +14,10 @@ Imports:
     vctrs (>= 0.0.0.9000),
     rlang,
     magrittr,
-    dplyr
-Remotes: 
-    r-lib/vctrs
+    dplyr,
+    tblrelations (>= 0.1.0.9000)
+Remotes:  
+    r-lib/vctrs,
+    jalsalam/tblrelations
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0
