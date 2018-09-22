@@ -1,15 +1,30 @@
 
-new_idx_df <- function(df, idx, value="value") {
-  stopifnote(is.data.frame(df))
+new_idx_df <- function(df, idx) {
+  stopifnot(is.data.frame(df))
   stopifnot(is.character(idx)) #idx must be in names(df)
   #idx can be named or not
-  stopifnot(is.character(value)) #value must be in names(df)
 
   structure(
     df,
     idx = idx,
-    value = value,
     class = c("idx_df", "data.frame")
   )
 }
+
+
+validate_idx_df <- function(x) {
+  if (length( setdiff( attr(x, "idx"), names(x) )) != 0) {
+    stop("Index values not in data", .call = FALSE)}
+
+  if (! "value" %in% names(x)) stop("Data must have a `value` column representing the index vector values.")
+
+  invisible(x)
+}
+
+
+# idx_df <- function(x, idx, value="value") {
+#
+#   #coercing function will rename a column in the data to `value` as specified to represent the values.
+#
+# }
 

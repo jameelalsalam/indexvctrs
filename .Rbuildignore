@@ -1,3 +1,4 @@
+^scripts$
 ^README\.Rmd$
 ^indexvctrs\.Rproj$
 ^\.Rproj\.user$
