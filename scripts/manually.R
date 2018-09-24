@@ -3,6 +3,15 @@
 
 devtools::load_all(".")
 
+ad <- data.frame(
+  key = c("a", "c"),
+  value = c(1, 3)
+)
+
+# ad[key]
+
+# with_indices(ad[key])
+
 a <- new_idx_df(ad <- data.frame(
   key = c("a", "c"),
   value = c(1, 3)
@@ -23,4 +32,4 @@ sqrt(a)
 `-`(a, b)
 `*`(a, b)
 
-
+mean(a)
