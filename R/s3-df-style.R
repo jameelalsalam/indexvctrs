@@ -1,8 +1,15 @@
 
+#' Index Vector
+#'
+#' @param df data frame with indices and `value` column
+#' @param idx character vector of index columns
+#'
+#' @export
 new_idx_df <- function(df, idx) {
   stopifnot(is.data.frame(df))
-  stopifnot(is.character(idx)) #idx must be in names(df)
-  #idx can be named or not
+  stopifnot(is.character(idx))
+  stopifnot(all(idx %in% names(df))) #idx must be in names(df)
+  stopifnot("value" %in% names(df)) #must have 1 and only 1 value
 
   structure(
     df,
@@ -16,11 +23,24 @@ validate_idx_df <- function(x) {
   if (length( setdiff( attr(x, "idx"), names(x) )) != 0) {
     stop("Index values not in data", .call = FALSE)}
 
-  if (! tblrelations::pk_ish(as_data_frame()))
+  # if (! tblrelations::pk_ish(as_tibble()))
 
   if (! "value" %in% names(x)) stop("Data must have a `value` column representing the index vector values.")
 
   invisible(x)
+}
+
+#' Get Indices
+#'
+#' @param x index vector
+#'
+#' @export
+get_idxs <- function(x) {
+
+}
+
+get_val <- function(x) {
+
 }
 
 

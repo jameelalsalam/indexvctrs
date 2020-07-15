@@ -32,4 +32,4 @@ sqrt(a)
 `-`(a, b)
 `*`(a, b)
 
-mean(a)
+mean(a) # errors

@@ -21,7 +21,7 @@ Ops.idx_df <- function(x, y) {
 
   my_exp <- expr((!! sym(.Generic))(value.x, value.y))
 
-  join_data <- dplyr::inner_join(dplyr::as_data_frame(x), dplyr::as_data_frame(y), by = common_by) %>%
+  join_data <- dplyr::inner_join(dplyr::as_tibble(x), dplyr::as_tibble(y), by = common_by) %>%
     mutate(value = !!my_exp) %>%
     select(-value.x, -value.y)
 
