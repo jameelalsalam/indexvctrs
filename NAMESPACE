@@ -2,10 +2,13 @@
 
 S3method(Ops,idx_tbl)
 S3method(Summary,idx_tbl)
+S3method(index,double)
+S3method(index,idx_tbl)
 S3method(mean,idx_tbl)
 S3method(value,idx_tbl)
 export("%>%")
 export(coalesce_by_idx)
+export(index)
 export(new_idx_tibble)
 export(value)
 import(dplyr)

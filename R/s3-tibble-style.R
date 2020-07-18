@@ -30,14 +30,19 @@ value.idx_tbl <- function(x, ...) {
   dplyr::pull(x, "value")
 }
 
+#' @export
 index <- function(x, ...) {
   UseMethod("index", x)
 }
 
+#' @method index idx_tbl
+#' @export
 index.idx_tbl <- function(x, ...) {
   dplyr::select(x, attr(x, "idx"))
 }
 
+#' @method index double
+#' @export
 index.double <- function(x, ...) {
   NULL
 }
