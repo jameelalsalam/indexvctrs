@@ -20,10 +20,12 @@ new_idx_tibble <- function(tbl, idx) {
   )
 }
 
+#' @export
 value <- function(x, ...) {
   UseMethod("value", x)
 }
 
+#' @export
 value.idx_tbl <- function(x, ...) {
   dplyr::pull(x, "value")
 }
