@@ -42,7 +42,7 @@ index.double <- function(x, ...) {
   NULL
 }
 
-common_index <- function(idx_x, idx_y) {
+inner_common_index <- function(idx_x, idx_y) {
 
   if(!is.null(idx_x) && !is.null(idx_y)) {
     common_cols <- intersect(names(idx_x), names(idx_y))
@@ -82,7 +82,7 @@ Ops.idx_tbl <- function(x, y) {
   idx_x <- index(x)
   idx_y <- index(y)
 
-  idx_common <- common_index(idx_x, idx_y)
+  idx_common <- inner_common_index(idx_x, idx_y)
 
   x_along <- along_index(x, idx_common)
   y_along <- along_index(y, idx_common)
