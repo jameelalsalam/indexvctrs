@@ -8,6 +8,8 @@ ad <- data.frame(
   value = c(1, 3)
 )
 
+ad
+
 # ad[key]
 
 # with_indices(ad[key])

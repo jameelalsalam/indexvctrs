@@ -17,4 +17,6 @@ Imports:
     dplyr,
     withr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.0
+RoxygenNote: 7.1.0
+Suggests: 
+    testthat
