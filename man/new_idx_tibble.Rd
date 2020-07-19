@@ -4,12 +4,12 @@
 \alias{new_idx_tibble}
 \title{Tibble-style index vector}
 \usage{
-new_idx_tibble(tbl, idx)
+new_idx_tibble(x, idx_cols)
 }
 \arguments{
-\item{tbl}{on which to base it}
+\item{x}{tibble data}
 
-\item{idx}{character vector designating idx columns}
+\item{idx_cols}{character vector designating idx columns}
 }
 \description{
 Tibble-style index vector

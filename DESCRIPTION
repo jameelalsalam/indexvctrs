@@ -15,7 +15,8 @@ Imports:
     rlang,
     magrittr,
     dplyr,
-    withr
+    withr,
+    purrr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Suggests: 

@@ -1,24 +1,46 @@
 
 #' Tibble-style index vector
 #'
-#' @param tbl on which to base it
-#' @param idx character vector designating idx columns
+#' @param x tibble data
+#' @param idx_cols character vector designating idx columns
 #'
 #' @import tibble
 #' @export
-new_idx_tibble <- function(tbl, idx) {
-  stopifnot(is_tibble(tbl))
-  stopifnot(is.character(idx))
-  stopifnot(all(idx %in% names(tbl))) #idx must be in names(df)
-  stopifnot("value" %in% names(tbl)) #must have 1 and only 1 value
+new_idx_tibble <- function(x, idx_cols) {
+  stopifnot(is_tibble(x))
+  stopifnot(is.character(idx_cols))
 
   tibble::new_tibble(
-    tbl,
-    idx = idx,
-    nrow = nrow(tbl),
+    x,
+    idx_cols = idx_cols,
+    nrow = nrow(x),
     class = "idx_tbl"
   )
 }
+
+#' Tibble-style index vector
+#'
+#' @param x data coercible to tbl_df
+#' @param index_cols character vector, name of index columns
+#' @param value_col length-1 character vector, name of value column, will be renamed as `value`
+#' @import dplyr
+#' @export
+idx_tibble <- function(x,
+                       idx_cols = setdiff(names(tbl), "value"),
+                       value_col = "value") {
+
+  tbl <- as_tibble(x)
+  stopifnot(all(idx_cols %in% names(tbl)))
+  stopifnot(value_col %in% names(tbl)) #must have 1 and only 1 value
+
+  tbl_res <- as_tibble(tbl) %>%
+    select(idx_cols, value_col) %>%
+    rename(value = !!value_col) %>%
+    arrange_at(idx_cols)
+
+  new_idx_tibble(tbl_res, idx_cols = idx_cols)
+}
+
 
 #' @export
 value <- function(x, ...) {

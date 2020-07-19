@@ -19,7 +19,7 @@ full_common_index <- function(idx_x, idx_y) {
 #' Coalesce indexvectors by index
 #'
 #' @export
-#' @import purrr
+#' @importFrom purrr map
 #' @examples
 #' t1 <- new_idx_tibble(tibble(year = 2005, value = 1), idx = "year")
 #' t2 <- new_idx_tibble(tibble(year = 2010, value = 2), idx = "year")
