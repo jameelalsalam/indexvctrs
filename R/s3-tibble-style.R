@@ -22,15 +22,45 @@ new_idx_tibble <- function(x, idx_cols) {
 #'
 #' @param x data coercible to tbl_df
 #' @param index_cols character vector, name of index columns
-#' @param value_col length-1 character vector, name of value column, will be renamed as `value`
+#' @param value_col length-1 character vector, name of value column, defaults as "value" if present, will be renamed as `value`
 #' @import dplyr
 #' @export
 idx_tibble <- function(x,
-                       idx_cols = setdiff(names(tbl), "value"),
-                       value_col = "value") {
+                       idx_cols = NULL,
+                       value_col = NULL) {
 
   tbl <- as_tibble(x)
+
   stopifnot(all(idx_cols %in% names(tbl)))
+
+  # value_col defaults:
+  # 1) if specified, use that (if idx_cols is unspecified, all others become idx_cols)
+  # 2) if "value" is present, use that
+  # 3) if all but one column is specified as an index, use that
+  # 4) else use the last column (assuming its not an idx_col)
+  # 5) error
+
+  len_names <- length(names(tbl))
+  last_col  <- names(tbl)[[len_names]]
+  non_idx_cols <- setdiff(names(tbl), idx_cols)
+
+  if(is.null(value_col)) {
+    if("value" %in% names(tbl)) {
+      value_col <- "value"
+
+    } else if(length(non_idx_cols) == 1) {
+        value_col <- non_idx_cols
+
+      } else if(!last_col %in% idx_cols) {
+        value_col <- last_col} else {
+          stop("Cannot determine default `value_col`")
+        }
+  }
+
+  # idx_cols defaults to non-value columns:
+  if(is.null(idx_cols)) idx_cols <- setdiff(names(tbl), value_col)
+
+
   stopifnot(value_col %in% names(tbl)) #must have 1 and only 1 value
 
   tbl_res <- as_tibble(tbl) %>%
