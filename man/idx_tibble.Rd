@@ -4,12 +4,12 @@
 \alias{idx_tibble}
 \title{Tibble-style index vector}
 \usage{
-idx_tibble(x, idx_cols = setdiff(names(tbl), "value"), value_col = "value")
+idx_tibble(x, idx_cols = NULL, value_col = NULL)
 }
 \arguments{
 \item{x}{data coercible to tbl_df}
 
-\item{value_col}{length-1 character vector, name of value column, will be renamed as \code{value}}
+\item{value_col}{length-1 character vector, name of value column, defaults as "value" if present, will be renamed as \code{value}}
 
 \item{index_cols}{character vector, name of index columns}
 }

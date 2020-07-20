@@ -90,7 +90,8 @@ index <- function(x, ...) {
 #' @method index idx_tbl
 #' @export
 index.idx_tbl <- function(x, ...) {
-  dplyr::select(x, attr(x, "idx"))
+  dplyr::select(x, attr(x, "idx_cols")) %>%
+    dplyr::distinct_all()
 }
 
 #' @method index double
@@ -109,14 +110,21 @@ inner_common_index <- function(idx_x, idx_y) {
   }
 }
 
+#' Make or reshape an idx_tbl by arranging values along an index
+#'
+#' @param x values (or idx_tbl)
+#' @param idx index data, e.g., unique combinations of columns that will correspond to idx_cols
+#'
+#' @keywords internal
 along_index <- function(x, idx, ...) {
   UseMethod("along_index", x)
 }
 
 along_index.idx_tbl <- function(x, idx, ...) {
-  common_by <- intersect(names(idx), attr(x, "idx"))
+  common_by <- intersect(names(idx), attr(x, "idx_cols"))
 
-  left_join(idx, x, by = common_by)
+  dat <- left_join(idx, x, by = common_by)
+  new_idx_tibble(dat, idx_cols = names(idx))
 }
 
 along_index.double <- function(x, idx, ...) {
@@ -139,7 +147,7 @@ Ops.idx_tbl <- function(x, y) {
   idx_x <- index(x)
   idx_y <- index(y)
 
-  idx_common <- inner_common_index(idx_x, idx_y)
+  idx_common <- full_common_index(idx_x, idx_y)
 
   x_along <- along_index(x, idx_common)
   y_along <- along_index(y, idx_common)
