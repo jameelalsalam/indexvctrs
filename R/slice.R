@@ -44,7 +44,8 @@ idx_slice <- function(x, ..., .keep_all = FALSE) {
 
  new_idx <- expand_grid(!!! new_idx_dims)
 
- res <- along_index(x, new_idx)
+ res <- along_index(x, new_idx) %>%
+   idx_tibble()
  res
 }
 
@@ -55,6 +56,11 @@ idx_slice <- function(x, ..., .keep_all = FALSE) {
 #'
 #' @param x idx_tbl
 #' @param ... index values to extract
+#'
+#' @export
+#' @examples
+#' pop <- idx_tibble(tidyr::population)
+#' pop_grow <- pop / idx_extract(pop, year=2000)
 idx_extract <- function(x, ...) {
 
   stopifnot(inherits(x, "idx_tbl"))
