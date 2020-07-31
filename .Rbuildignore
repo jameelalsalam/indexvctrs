@@ -2,3 +2,4 @@
 ^README\.Rmd$
 ^indexvctrs\.Rproj$
 ^\.Rproj\.user$
+^vignettes/articles$

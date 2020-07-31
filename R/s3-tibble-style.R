@@ -131,12 +131,25 @@ along_index.double <- function(x, idx, ...) {
   if(length(x) == nrow(idx) || length(x) == 1) {
     new_idx_tibble(
       mutate(idx, value = x),
-      idx = names(idx)
+      idx_cols = names(idx)
       )
   } else {
     stop("Incompatible lengths of x and idx in along_index.double")
   }
 }
+
+#' @method along_index units
+along_index.units <- function(x, idx, ...) {
+  if(length(x) == nrow(idx) || length(x) == 1) {
+    new_idx_tibble(
+      mutate(idx, value = x),
+      idx_cols = names(idx)
+    )
+  } else {
+    stop("Incompatible lengths of x and idx in along_index.units")
+  }
+}
+
 
 #' @import dplyr
 #' @import rlang

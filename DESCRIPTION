@@ -17,8 +17,10 @@ Imports:
     dplyr,
     withr,
     purrr,
-    tidyr
+    tidyr,
+    units
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Suggests: 
-    testthat
+    testthat,
+    rmarkdown
