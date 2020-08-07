@@ -5,3 +5,4 @@
 ^indexvctrs\.Rproj$
 ^\.Rproj\.user$
 ^vignettes/articles$
+^\.github$
