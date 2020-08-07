@@ -2,10 +2,15 @@
 
 #' Combine indices for coalesce
 #'
+#' @param idx_x an index (data frame of unique combinations)
+#' @param idx_y an index (data frame of unique combinations)
+#'
 #' @examples
-#' t1 <- new_idx_tibble(tibble(year = 2005, value = 1), idx = "year")
-#' t2 <- new_idx_tibble(tibble(year = 2010, value = 2), idx = "year")
+#' t1 <- new_idx_tibble(tibble::tibble(year = 2005, value = 1), idx = "year")
+#' t2 <- new_idx_tibble(tibble::tibble(year = 2010, value = 2), idx = "year")
+#' \dontrun{
 #' full_common_index(index(t1), index(t2))
+#' }
 full_common_index <- function(idx_x, idx_y) {
 
   if(!is.null(idx_x) && !is.null(idx_y)) {
@@ -18,12 +23,15 @@ full_common_index <- function(idx_x, idx_y) {
 
 #' Coalesce indexvectors by index
 #'
+#' @param ... idx_tbl objects to combine
+#'
 #' @export
 #' @importFrom purrr map
+#' @importFrom tibble tibble
 #' @examples
-#' t1 <- new_idx_tibble(tibble(year = 2005, value = 1), idx = "year")
-#' t2 <- new_idx_tibble(tibble(year = 2010, value = 2), idx = "year")
-#' t3 <- new_idx_tibble(tibble(year = c(2010, 2011), value = c(1.1, 1.2)), idx = "year")
+#' t1 <- new_idx_tibble(tibble::tibble(year = 2005, value = 1), idx = "year")
+#' t2 <- new_idx_tibble(tibble::tibble(year = 2010, value = 2), idx = "year")
+#' t3 <- new_idx_tibble(tibble::tibble(year = c(2010, 2011), value = c(1.1, 1.2)), idx = "year")
 #' coalesce_by_idx(t1, t2)
 #' coalesce_by_idx(t1, t2, t3)
 coalesce_by_idx <- function(...) {
@@ -35,5 +43,6 @@ coalesce_by_idx <- function(...) {
   idx_vs_common <- purrr::map(vs, ~along_index(.x, common_idx))
   vals <- map(idx_vs_common, value)
   res <- dplyr::coalesce(!!!vals)
-  new_idx_tibble(bind_cols(common_idx, tibble(value = res)), idx = names(common_idx))
+  new_idx_tibble(bind_cols(common_idx, tibble(value = res)),
+                 idx_cols = names(common_idx))
 }

@@ -9,9 +9,9 @@ idx_tibble(x, idx_cols = NULL, value_col = NULL)
 \arguments{
 \item{x}{data coercible to tbl_df}
 
-\item{value_col}{length-1 character vector, name of value column, defaults as "value" if present, will be renamed as \code{value}}
+\item{idx_cols}{character vector, name of index columns}
 
-\item{index_cols}{character vector, name of index columns}
+\item{value_col}{length-1 character vector, name of value column, defaults as "value" if present, will be renamed as \code{value}}
 }
 \description{
 Tibble-style index vector

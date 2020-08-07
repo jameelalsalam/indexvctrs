@@ -6,11 +6,18 @@
 \usage{
 full_common_index(idx_x, idx_y)
 }
+\arguments{
+\item{idx_x}{an index (data frame of unique combinations)}
+
+\item{idx_y}{an index (data frame of unique combinations)}
+}
 \description{
 Combine indices for coalesce
 }
 \examples{
-t1 <- new_idx_tibble(tibble(year = 2005, value = 1), idx = "year")
-t2 <- new_idx_tibble(tibble(year = 2010, value = 2), idx = "year")
+t1 <- new_idx_tibble(tibble::tibble(year = 2005, value = 1), idx = "year")
+t2 <- new_idx_tibble(tibble::tibble(year = 2010, value = 2), idx = "year")
+\dontrun{
 full_common_index(index(t1), index(t2))
+}
 }

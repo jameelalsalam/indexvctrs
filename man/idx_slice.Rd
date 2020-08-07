@@ -10,6 +10,8 @@ idx_slice(x, ..., .keep_all = FALSE)
 \item{x}{idx_tbl indexvector}
 
 \item{...}{index values to slice. If unnamed, refer to idx_cols of x in order. If named they all must be named, and refer to idx_cols by name.}
+
+\item{.keep_all}{unused, but perhaps to be used in future.}
 }
 \value{
 idx_tbl with the same axes as input.

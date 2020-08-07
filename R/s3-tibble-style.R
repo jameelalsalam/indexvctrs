@@ -20,7 +20,7 @@ new_idx_tibble <- function(x, idx_cols) {
 #' Tibble-style index vector
 #'
 #' @param x data coercible to tbl_df
-#' @param index_cols character vector, name of index columns
+#' @param idx_cols character vector, name of index columns
 #' @param value_col length-1 character vector, name of value column, defaults as "value" if present, will be renamed as `value`
 #' @import dplyr
 #' @export
@@ -70,7 +70,11 @@ idx_tibble <- function(x,
   new_idx_tibble(tbl_res, idx_cols = idx_cols)
 }
 
-
+#' The values from an indexvctr
+#'
+#' @param x idx_tbl object
+#' @param ... dots unused
+#'
 #' @export
 value <- function(x, ...) {
   UseMethod("value", x)
@@ -85,6 +89,11 @@ idx_cols <- function(x) {
   attr(x, "idx_cols")
 }
 
+#' Index of an object
+#'
+#' @param x a idx_tbl, double, or other object compatible with indexvctrs ops
+#' @param ... unused
+#'
 #' @export
 index <- function(x, ...) {
   UseMethod("index", x)
@@ -159,7 +168,10 @@ along_index.units <- function(x, idx, ...) {
 #' @import rlang
 #' @method Ops idx_tbl
 #' @export
-Ops.idx_tbl <- function(x, y) {
+Ops.idx_tbl <- function(e1, e2) {
+
+  x <- e1
+  y <- e2
 
   idx_x <- index(x)
   idx_y <- index(y)

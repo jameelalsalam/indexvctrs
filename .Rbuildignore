@@ -6,3 +6,4 @@
 ^\.Rproj\.user$
 ^vignettes/articles$
 ^\.github$
+^LICENSE\.md$

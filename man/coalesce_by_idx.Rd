@@ -6,13 +6,16 @@
 \usage{
 coalesce_by_idx(...)
 }
+\arguments{
+\item{...}{idx_tbl objects to combine}
+}
 \description{
 Coalesce indexvectors by index
 }
 \examples{
-t1 <- new_idx_tibble(tibble(year = 2005, value = 1), idx = "year")
-t2 <- new_idx_tibble(tibble(year = 2010, value = 2), idx = "year")
-t3 <- new_idx_tibble(tibble(year = c(2010, 2011), value = c(1.1, 1.2)), idx = "year")
+t1 <- new_idx_tibble(tibble::tibble(year = 2005, value = 1), idx = "year")
+t2 <- new_idx_tibble(tibble::tibble(year = 2010, value = 2), idx = "year")
+t3 <- new_idx_tibble(tibble::tibble(year = c(2010, 2011), value = c(1.1, 1.2)), idx = "year")
 coalesce_by_idx(t1, t2)
 coalesce_by_idx(t1, t2, t3)
 }
