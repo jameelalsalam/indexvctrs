@@ -14,7 +14,7 @@ Imports:
     vctrs (>= 0.0.0.9001),
     rlang,
     magrittr,
-    dplyr,
+    dplyr (>= 1.0.0),
     withr,
     purrr,
     tidyr,

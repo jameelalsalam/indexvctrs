@@ -25,7 +25,7 @@ sc <- 3
 
 yr_sc <- c(1, 1.02)
 
-test_that("basics", {
+test_that("constructor basics: rows, columns, index, values", {
   expect_equal(vctrs::vec_size(activity), 4)
   expect_equal(ncol(activity), 3) # always?
 

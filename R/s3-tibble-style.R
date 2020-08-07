@@ -94,8 +94,8 @@ index <- function(x, ...) {
 #' @method index idx_tbl
 #' @export
 index.idx_tbl <- function(x, ...) {
-  dplyr::select(x, attr(x, "idx_cols")) %>%
-    dplyr::distinct_all()
+  dplyr::select(x, idx_cols(x)) %>%
+    dplyr::distinct(across())
 }
 
 #' @method index double
