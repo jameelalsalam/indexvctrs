@@ -7,7 +7,7 @@
 #' @import tibble
 #' @export
 new_idx_tibble <- function(x, idx_cols) {
-  stopifnot(is_tibble(x))
+  stopifnot(inherits(x, "data.frame"))
   stopifnot(is.character(idx_cols))
 
   tibble::new_tibble(
