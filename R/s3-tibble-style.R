@@ -82,6 +82,10 @@ value.idx_tbl <- function(x, ...) {
   dplyr::pull(x, "value")
 }
 
+idx_cols <- function(x) {
+  attr(x, "idx_cols")
+}
+
 #' @export
 index <- function(x, ...) {
   UseMethod("index", x)
