@@ -4,7 +4,6 @@
 #' @param x tibble data
 #' @param idx_cols character vector designating idx columns
 #'
-#' @import tibble
 #' @export
 new_idx_tibble <- function(x, idx_cols) {
   stopifnot(inherits(x, "data.frame"))
