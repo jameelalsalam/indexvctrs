@@ -95,7 +95,8 @@ index <- function(x, ...) {
 #' @export
 index.idx_tbl <- function(x, ...) {
   dplyr::select(x, idx_cols(x)) %>%
-    dplyr::distinct(across())
+    dplyr::distinct(across()) %>%
+    as_tibble()
 }
 
 #' @method index double
@@ -125,7 +126,7 @@ along_index <- function(x, idx, ...) {
 }
 
 along_index.idx_tbl <- function(x, idx, ...) {
-  common_by <- intersect(names(idx), attr(x, "idx_cols"))
+  common_by <- intersect(names(idx), idx_cols(x))
 
   dat <- left_join(idx, x, by = common_by)
   new_idx_tibble(dat, idx_cols = names(idx))
