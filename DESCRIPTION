@@ -1,6 +1,6 @@
 Package: indexvctrs
 Title: Exploration of a DSL for Operations on Indexed Vectors
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Authors@R: 
     person(given = "Jameel",
            family = "Alsalam",

@@ -191,11 +191,11 @@ Ops.idx_tbl <- function(e1, e2) {
 Summary.idx_tbl <- function(x, ...) {
 
   res <- exec(.Generic, value(x))
-  res
+  idx_tibble(res)
 }
 
 #' @method mean idx_tbl
 #' @export
 mean.idx_tbl <- function(x, ...) {
-  mean(value(x))
+  idx_tibble(mean(value(x)))
 }
