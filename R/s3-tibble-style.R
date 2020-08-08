@@ -140,7 +140,7 @@ along_index.idx_tbl <- function(x, idx, ...) {
   new_idx_tibble(dat, idx_cols = names(idx))
 }
 
-along_index.double <- function(x, idx, ...) {
+along_index.default <- function(x, idx, ...) {
   if(length(x) == nrow(idx) || length(x) == 1) {
     new_idx_tibble(
       mutate(idx, value = x),
