@@ -102,9 +102,12 @@ index <- function(x, ...) {
 #' @method index idx_tbl
 #' @export
 index.idx_tbl <- function(x, ...) {
-  dplyr::select(x, idx_cols(x)) %>%
-    dplyr::distinct(across()) %>%
-    as_tibble()
+
+  if(length(idx_cols(x)) == 0) NULL else {
+    dplyr::select(x, idx_cols(x)) %>%
+      dplyr::distinct(across()) %>%
+      as_tibble()
+  }
 }
 
 #' @method index double
