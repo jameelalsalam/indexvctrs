@@ -15,16 +15,32 @@ test_that("removing index columns with `[` removes from attribute", {
 
   expect_equal(idx_cols(activity[3]), character(0))
   expect_equal(idx_cols(activity[2:3]), c("year"))
-  expect_null(idx_cols(activity[1])) # if value column removes class
+
+
+
   expect_error(activity[4])
+})
+
+test_that("removing value column with `[` removes the class", {
+
+  expect_equal(class(activity[1]), c("tbl_df", "tbl", "data.frame"))
+  expect_null(idx_cols(activity[1]))
+
 })
 
 test_that("removing index columns with dplyr::select removes from attribute", {
 
   expect_equal(idx_cols(dplyr::select(activity, 3)), character(0))
   expect_equal(idx_cols(dplyr::select(activity, 2:3)), c("year"))
-  expect_null(idx_cols(dplyr::select(activity, 1))) # if value column removes class
+
   expect_error(dplyr::select(activity, 4))
+})
+
+test_that("removing value column with select removes the class", {
+
+  expect_equal(class(dplyr::select(activity, 1)), c("tbl_df", "tbl", "data.frame"))
+  expect_null(idx_cols(dplyr::select(activity, 1)))
+
 })
 
 test_that("filter does not change the index", {

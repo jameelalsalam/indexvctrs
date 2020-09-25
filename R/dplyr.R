@@ -18,6 +18,7 @@
     new_idx_tibble(data, idx_cols = idx_cols_new)
   } else {
     attr(data, "idx_cols") <- NULL
+    class(data) <- setdiff(class(data), "idx_tbl")
     data
   }
 }
@@ -36,4 +37,23 @@ dplyr_reconstruct.idx_tbl <- function(data, template) {
     class(data) <- setdiff(class(data), "idx_tbl")
     data
   }
+}
+
+# if idx_col names are changed, attribute also changes
+# TODO: if `value` column is renamed, then remove class?
+
+#' @export
+`names<-.idx_tbl` <- function(x, value) {
+
+  value <- as.character(value)
+  idx_col_loc <- match(idx_cols(x), names(x))
+
+  # maybe need error handling in `names<-.data.frame` ?
+  #res <- NextMethod()
+  #attr(res, "idx_cols") <- value[idx_col_loc]
+
+  attr(x, "names") <- value
+  attr(x, "idx_cols") <- value[idx_col_loc]
+  x
+
 }
