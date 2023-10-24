@@ -6,6 +6,11 @@
 \usage{
 value_at_idx(x, idx)
 }
+\arguments{
+\item{x}{an idx_tbl}
+
+\item{idx}{an index that can be used with x}
+}
 \description{
 Get values of an idx_tbl for specific index values
 }
