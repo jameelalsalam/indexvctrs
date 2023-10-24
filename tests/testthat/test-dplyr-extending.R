@@ -51,8 +51,18 @@ test_that("filter does not change the index", {
   expect_equal(vctrs::vec_size(wht), 2)
   expect_equal(value(wht), c(5, 8))
 
+  expect_s3_class(wht, "idx_tbl")
 })
 
 test_that("group_by does not use these generics, so will need to implement directly", {
   expect_equal(intersect(class(group_by(activity, crop)), "idx_tbl"), character())
 })
+
+test_that("renamed idx_col results in correct attribute", {
+  act_rename <- dplyr::rename(activity, new_crop = crop)
+
+  expect_equal(idx_cols(act_rename), c("new_crop", "year"))
+  expect_s3_class(act_rename, c("idx_tbl"))
+})
+
+

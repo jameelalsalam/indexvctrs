@@ -16,13 +16,13 @@ activity <- idx_tibble(
 test_that("complete keeps idx_tbl class", {
   complete_act <- tidyr::complete(activity, crop = c("corn", "wheat", "rice"), year)
 
-  expect_equal(class(complete_act), class(activity))
+  expect_s3_class(complete_act, "idx_tbl")
   expect_equal(idx_cols(complete_act), c("crop", "year"))
 })
 
 test_that("unite keeps idx_tbl class", {
   unite_act <- tidyr::unite(activity, crop_year, crop, year)
 
-  expect_equal(class(unite_act), class(activity))
+  expect_s3_class(unite_act, "idx_tbl")
   expect_equal(idx_cols(unite_act), "crop_year")
 })

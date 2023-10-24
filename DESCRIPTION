@@ -1,6 +1,6 @@
 Package: indexvctrs
 Title: Exploration of a DSL for Operations on Indexed Vectors
-Version: 0.0.0.9008
+Version: 0.0.0.9009
 Authors@R: 
     person(given = "Jameel",
            family = "Alsalam",
@@ -14,7 +14,7 @@ Imports:
     vctrs,
     rlang,
     magrittr,
-    dplyr (>= 1.0.0),
+    dplyr (>= 1.1.1),
     withr,
     purrr,
     tidyr,

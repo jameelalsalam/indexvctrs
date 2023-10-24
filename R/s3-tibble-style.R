@@ -63,9 +63,9 @@ idx_tibble <- function(x,
   stopifnot(value_col %in% names(tbl)) #must have 1 and only 1 value
 
   tbl_res <- as_tibble(tbl) %>%
-    select(idx_cols, value_col) %>%
+    select(all_of(c(idx_cols, value_col))) %>%
     rename(value = !!value_col) %>%
-    arrange_at(idx_cols)
+    arrange(pick(all_of(idx_cols)))
 
   new_idx_tibble(tbl_res, idx_cols = idx_cols)
 }
@@ -105,7 +105,7 @@ index.idx_tbl <- function(x, ...) {
 
   if(length(idx_cols(x)) == 0) NULL else {
     dplyr::select(x, idx_cols(x)) %>%
-      dplyr::distinct(across()) %>%
+      dplyr::distinct(across(.cols = everything())) %>%
       as_tibble()
   }
 }
